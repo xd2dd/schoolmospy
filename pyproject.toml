@@ -1,0 +1,26 @@
+[project]
+name = "schoolmospy"
+version = "0.0.1"
+description = "a lightweight Python wrapper for school.mos.py APIs"
+authors = [
+    {name = "Ivan Kriventsev",email = "xd2dd@icloud.com"}
+]
+license = {text = "GNU v3"}
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiohttp (>=3.12.15,<4.0.0)",
+    "pydantic (>=2.11.9,<3.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.13.2"
+mypy = "^1.18.2"
+black = "^25.9.0"
+isort = "^6.0.1"
+
