@@ -1,2 +1,5 @@
-# schoolmospy
-Lightweight Python wrapper for school.mos.py APIs.
+# 📕 SchoolMosPy
+
+SchoolMosPy - a lightweight Python wrapper for school.mos.py APIs.
+
+

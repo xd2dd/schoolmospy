@@ -1,0 +1,2 @@
+from schoolmospy.core.student_client import StudentClient
+from schoolmospy.core.basic_client import BasicClient
