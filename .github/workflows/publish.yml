@@ -1,0 +1,63 @@
+name: 📦 Auto Publish to PyPI
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧰 Checkout code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false  # чтобы git push был чистым
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 🧩 Install Poetry
+        run: pip install poetry
+
+      - name: 📦 Install dependencies
+        run: poetry install --no-root
+
+      - name: 🏷️ Bump version
+        id: bump
+        run: |
+          CURRENT_VERSION=$(poetry version -s)
+          poetry version patch
+          NEW_VERSION=$(poetry version -s)
+          echo "current=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "new=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "🔖 Version bumped: $CURRENT_VERSION → $NEW_VERSION"
+
+      - name: 🔧 Build package
+        run: poetry build
+
+      - name: 💾 Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: schoolmospy-builds
+          path: dist/*
+
+      - name: 🚀 Publish to PyPI
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
+        run: poetry publish --username __token__ --password $POETRY_PYPI_TOKEN_PYPI
+
+      - name: 🪄 Commit and push new version
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add pyproject.toml
+          git commit -m "ci: bump version to ${{ steps.bump.outputs.new }} [skip ci]" || echo "No changes to commit"
+          git tag "v${{ steps.bump.outputs.new }}"
+          git push origin main --tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
