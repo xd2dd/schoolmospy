@@ -20,7 +20,7 @@ class Value(BaseModel):
     grade_system_type: str
 
 
-class PayloadItem(BaseModel):
+class MarkItem(BaseModel):
     id: int
     value: str
     values: List[Value]
@@ -42,4 +42,4 @@ class PayloadItem(BaseModel):
 
 
 class Marks(BaseModel):
-    payload: List[PayloadItem]
+    payload: List[MarkItem]
