@@ -24,7 +24,7 @@ class Material(BaseModel):
     action_name: str
 
 
-class PayloadItem(BaseModel):
+class HomeworkItem(BaseModel):
     type: str
     description: str
     comments: List
@@ -49,4 +49,4 @@ class PayloadItem(BaseModel):
 
 
 class Homeworks(BaseModel):
-    payload: List[PayloadItem]
+    payload: List[HomeworkItem]

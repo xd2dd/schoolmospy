@@ -33,16 +33,15 @@ class BasicClient:
             headers["Profile-Id"] = str(self.profile_id)
         if self.profile_type:
             headers["Profile-Type"] = self.profile_type
+            headers["X-Mes-Role"]   = self.profile_type
         return headers
 
     async def _handle_response(self, response: httpx.Response, response_model: Optional[Type[BaseModel]] = None):
-        """Обработка ответа и ошибок"""
         if response.is_success:
             if response_model:
                 return response_model.model_validate(response.json())
             return response.json()
 
-        # Ошибки
         text = response.text.strip()
         status = response.status_code
 
