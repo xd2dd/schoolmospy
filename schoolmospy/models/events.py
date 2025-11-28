@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, List, Optional
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -11,27 +11,27 @@ class EventItem(BaseModel):
     source: str
     start_at: str
     finish_at: str
-    cancelled: Optional[bool] = None
-    lesson_type: Optional[str] = None
-    course_lesson_type: Optional[Any] = None
-    lesson_form: Optional[Any] = None
-    replaced: Optional[bool] = None
-    room_name: Optional[str]
-    room_number: Optional[str]
-    subject_id: Optional[int] = None
+    cancelled: bool | None = None
+    lesson_type: str | None = None
+    course_lesson_type: Any | None = None
+    lesson_form: Any | None = None
+    replaced: bool | None = None
+    room_name: str | None
+    room_number: str | None
+    subject_id: int | None = None
     subject_name: str
-    link_to_join: Optional[Any] = None
+    link_to_join: Any | None = None
     health_status: Any
     absence_reason_id: Any
     nonattendance_reason_id: Any
-    homework: Optional[Any] = None
-    marks: Optional[Any] = None
+    homework: Any | None = None
+    marks: Any | None = None
     is_missed_lesson: bool
-    esz_field_id: Optional[int] = None
-    lesson_theme: Optional[Any] = None
+    esz_field_id: int | None = None
+    lesson_theme: Any | None = None
 
 
 class Events(BaseModel):
     total_count: int
-    response: List[EventItem]
+    response: list[EventItem]
     errors: Any
