@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import List
-
 from pydantic import BaseModel, Field
 
 
@@ -23,7 +21,7 @@ class Class(BaseModel):
     parallel: Parallel
     organization: Organization
     education_stage_id: int
-    staff_ids: List[int]
+    staff_ids: list[int]
 
 
 class ServiceType(BaseModel):
@@ -34,7 +32,7 @@ class ServiceType(BaseModel):
 class EducationItem(BaseModel):
     training_begin_at: str
     training_end_at: str
-    class_: Class = Field(..., alias='class')
+    class_: Class = Field(..., alias="class")
     service_type: ServiceType
 
 
@@ -48,9 +46,9 @@ class Userinfo(BaseModel):
     phone: str
     name: str
     gender: str
-    education: List[EducationItem]
-    children: List
-    agents: List[str]
+    education: list[EducationItem]
+    children: list
+    agents: list[str]
     mesh_id: str
     given_name: str
     family_name: str

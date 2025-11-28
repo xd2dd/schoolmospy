@@ -1,10 +1,11 @@
 from datetime import datetime
+
 from schoolmospy.core.basic_client import BasicClient
 from schoolmospy.models.events import Events
 
 
 class EventClient:
-    def __init__(self, client: BasicClient):
+    def __init__(self, client: BasicClient) -> None:
         """
         Initialization the EventClient instance.
 
@@ -14,7 +15,7 @@ class EventClient:
         """
         self.client = client
 
-    async def get(self, from_date: datetime, to_date: datetime, contingent_guid: str = None) -> Events:
+    async def get(self, from_date: datetime, to_date: datetime, contingent_guid: str) -> Events:
         """
         Method for getting events done within a certain period of time
 
@@ -36,7 +37,7 @@ class EventClient:
             from schoolmospy.clients.student_client import StudentClient
 
             client = StudentClient(token="YOUR_TOKEN", profile_id=17234613)
-            
+
             me = await client.get_me()
 
             events = await client.events.get(
@@ -48,7 +49,6 @@ class EventClient:
             ```
         """
 
-
         return await self.client.get(
             "/api/eventcalendar/v1/api/events",
             Events,
@@ -57,6 +57,6 @@ class EventClient:
                 "to": to_date.strftime("%Y-%m-%d"),
                 "person_ids": contingent_guid,
                 "expand": "marks,homework,absence_reason_id,health_status,nonattendance_reason_id",
-                "source_types": "PLAN,AE,EC,EVENTS,AFISHA,ORGANIZER,OLYMPIAD,PROF"  
-            }
+                "source_types": "PLAN,AE,EC,EVENTS,AFISHA,ORGANIZER,OLYMPIAD,PROF",
+            },
         )

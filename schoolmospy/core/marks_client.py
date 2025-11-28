@@ -1,10 +1,11 @@
 from datetime import datetime
+
 from schoolmospy.core.basic_client import BasicClient
 from schoolmospy.models.marks import Marks
 
 
 class MarksClient:
-    def __init__(self, client: BasicClient):
+    def __init__(self, client: BasicClient) -> None:
         self.client = client
 
     async def get(self, from_date: datetime, to_date: datetime) -> Marks:
@@ -41,6 +42,6 @@ class MarksClient:
             params={
                 "from": from_date.strftime("%Y-%m-%d"),
                 "to": to_date.strftime("%Y-%m-%d"),
-                "student_id": self.client.profile_id
-            }
+                "student_id": self.client.profile_id,
+            },
         )

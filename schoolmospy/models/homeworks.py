@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, List, Optional
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -11,12 +11,12 @@ class Url(BaseModel):
 
 
 class Material(BaseModel):
-    uuid: Optional[str]
+    uuid: str | None
     type: str
-    selected_mode: Optional[str]
+    selected_mode: str | None
     type_name: str
-    id: Optional[int]
-    urls: List[Url]
+    id: int | None
+    urls: list[Url]
     description: Any
     content_type: Any
     title: str
@@ -27,11 +27,11 @@ class Material(BaseModel):
 class HomeworkItem(BaseModel):
     type: str
     description: str
-    comments: List
-    materials: List[Material]
+    comments: list
+    materials: list[Material]
     homework: str
     homework_entry_student_id: int
-    attachments: List
+    attachments: list
     subject_id: int
     group_id: int
     date: str
@@ -49,4 +49,4 @@ class HomeworkItem(BaseModel):
 
 
 class Homeworks(BaseModel):
-    payload: List[HomeworkItem]
+    payload: list[HomeworkItem]

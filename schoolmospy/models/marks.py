@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, List
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -23,7 +23,7 @@ class Value(BaseModel):
 class MarkItem(BaseModel):
     id: int
     value: str
-    values: List[Value]
+    values: list[Value]
     comment: str
     weight: int
     point_date: Any
@@ -42,4 +42,4 @@ class MarkItem(BaseModel):
 
 
 class Marks(BaseModel):
-    payload: List[MarkItem]
+    payload: list[MarkItem]

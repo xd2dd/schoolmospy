@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, List, Optional
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -44,7 +44,7 @@ class Representative(BaseModel):
     middle_name: str
     type_id: int
     type: str
-    email: Optional[str]
+    email: str | None
     phone: str
     snils: str
 
@@ -74,9 +74,9 @@ class Child(BaseModel):
     class_unit_id: int
     class_uid: str
     age: int
-    groups: List[Group]
-    representatives: List[Representative]
-    sections: List[Section]
+    groups: list[Group]
+    representatives: list[Representative]
+    sections: list[Section]
     sudir_account_exists: bool
     sudir_login: Any
     is_legal_representative: bool
@@ -90,5 +90,5 @@ class Child(BaseModel):
 
 class Profile(BaseModel):
     profile: _Profile
-    children: List[Child]
+    children: list[Child]
     hash: str
