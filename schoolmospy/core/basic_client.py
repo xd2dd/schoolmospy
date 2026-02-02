@@ -20,6 +20,7 @@ class BasicClient:
         self.profile_id = profile_id
         self.profile_type = profile_type
         self.timeout = timeout
+        self.extra_headers: dict[str, str] = {}
 
     @property
     def headers(self) -> dict[str, str]:
@@ -35,7 +36,8 @@ class BasicClient:
             headers["Profile-Id"] = str(self.profile_id)
         if self.profile_type:
             headers["Profile-Type"] = self.profile_type
-            headers["X-Mes-Role"] = self.profile_type
+        if self.extra_headers:
+            headers.update(self.extra_headers)
         return headers
 
     async def _handle_response(
@@ -66,7 +68,10 @@ class BasicClient:
         **kwargs: Any,
     ) -> Any:
         url = f"{self.base_url}/{endpoint.lstrip('/')}"
-        async with httpx.AsyncClient(headers=self.headers, timeout=self.timeout) as client:
+        headers = self.headers
+        if "headers" in kwargs:
+            headers = {**headers, **kwargs.pop("headers")}
+        async with httpx.AsyncClient(headers=headers, timeout=self.timeout) as client:
             try:
                 resp = await client.get(url, **kwargs)
             except httpx.RequestError as e:
@@ -81,7 +86,10 @@ class BasicClient:
         **kwargs: Any,
     ) -> Any:
         url = f"{self.base_url}/{endpoint.lstrip('/')}"
-        async with httpx.AsyncClient(headers=self.headers, timeout=self.timeout) as client:
+        headers = self.headers
+        if "headers" in kwargs:
+            headers = {**headers, **kwargs.pop("headers")}
+        async with httpx.AsyncClient(headers=headers, timeout=self.timeout) as client:
             try:
                 resp = await client.post(url, json=data, **kwargs)
             except httpx.RequestError as e:

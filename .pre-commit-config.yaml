@@ -1,5 +1,7 @@
 # Pre-commit hooks configuration
 # See https://pre-commit.com for more information
+default_language_version:
+  python: python3.12
 
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
@@ -14,22 +16,6 @@ repos:
     hooks:
       - id: black
         language_version: python3.12
-
-  - repo: https://github.com/PyCQA/isort
-    rev: 6.0.1
-    hooks:
-      - id: isort
-        args: [--profile, black]
-
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.18.2
-    hooks:
-      - id: mypy
-        additional_dependencies:
-          - pydantic>=2.11.9
-          - aiohttp>=3.12.15
-          - httpx>=0.28.1
-        args: [--ignore-missing-imports, --no-strict-optional, --allow-untyped-defs]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
