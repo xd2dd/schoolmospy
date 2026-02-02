@@ -44,19 +44,19 @@ async def main():
     print(f"Name: {profile.name}")
 
     # Get marks
-    marks = await client.marks.get_marks(
+    marks = await client.marks.get(
         from_date="2024-01-01",
         to_date="2024-12-31"
     )
 
     # Get homeworks
-    homeworks = await client.homeworks.get_homeworks(
+    homeworks = await client.homeworks.get(
         from_date="2024-01-01",
         to_date="2024-12-31"
     )
 
     # Get events/schedule
-    events = await client.events.get_events(
+    events = await client.events.get(
         from_date="2024-01-01",
         to_date="2024-12-31"
     )
@@ -80,5 +80,3 @@ This project is licensed under the GPL-3.0 License. See the [LICENSE](LICENSE) f
 Ivan Kriventsev - [xd2dd@icloud.com](mailto:xd2dd@icloud.com)
 
 ---
-
-⭐ If you like this project, please give it a star on GitHub!

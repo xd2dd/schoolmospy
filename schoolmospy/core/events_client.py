@@ -53,10 +53,11 @@ class EventClient:
             "/api/eventcalendar/v1/api/events",
             Events,
             params={
-                "from": from_date.strftime("%Y-%m-%d"),
-                "to": to_date.strftime("%Y-%m-%d"),
+                "begin_date": from_date.strftime("%Y-%m-%d"),
+                "end_date": to_date.strftime("%Y-%m-%d"),
                 "person_ids": contingent_guid,
                 "expand": "marks,homework,absence_reason_id,health_status,nonattendance_reason_id",
                 "source_types": "PLAN,AE,EC,EVENTS,AFISHA,ORGANIZER,OLYMPIAD,PROF",
             },
+            headers={"X-Mes-Role": "student"},
         )
