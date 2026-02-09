@@ -1,6 +1,6 @@
 [project]
 name = "schoolmospy"
-version = "0.2.2"
+version = "0.2.3"
 description = "A lightweight async Python wrapper for school.mos.ru APIs"
 authors = [{ name = "Ivan Kriventsev", email = "xd2dd@icloud.com" }]
 readme = "README.md"

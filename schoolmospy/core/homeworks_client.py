@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from schoolmospy.core.basic_client import BasicClient
-from schoolmospy.models.homeworks import Homeworks
+from schoolmospy.models.homeworks import Homeworks, DoneStatus
 
 
 class HomeworkClient:
@@ -52,4 +52,17 @@ class HomeworkClient:
                 "to": to_date.strftime("%Y-%m-%d"),
                 "student_id": self.client.profile_id,
             },
+        )
+    async def done(self, homework_id: int) -> DoneStatus:
+        """
+        Method for setting done status
+
+        :param homework_id: Homework ID
+        :type homework_id: int
+        :return: Status
+        :rtype: bool
+        """
+        return await self.client.post(
+            f"/api/family/web/v1/homeworks/{homework_id}/done",
+            response_model=DoneStatus
         )

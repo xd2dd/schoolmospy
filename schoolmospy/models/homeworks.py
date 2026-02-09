@@ -50,3 +50,6 @@ class HomeworkItem(BaseModel):
 
 class Homeworks(BaseModel):
     payload: list[HomeworkItem]
+
+class DoneStatus(BaseModel):
+    success: bool
