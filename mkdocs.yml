@@ -1,0 +1,53 @@
+site_name: SchoolMosPy Documentation
+site_description: Async Python wrapper for school.mos.ru API
+site_author: Ivan Kriventsev
+site_url: https://xd2dd.github.io/schoolmospy
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - admonition
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Quick Start: quickstart.md
+  - API Reference:
+      - StudentClient: api/student_client.md
+      - MarksClient: api/marks.md
+      - HomeworkClient: api/homeworks.md
+      - EventClient: api/events.md
+  - Models: models.md
+  - Exceptions: exceptions.md
