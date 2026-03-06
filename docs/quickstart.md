@@ -122,6 +122,28 @@ async def get_schedule():
 asyncio.run(get_schedule())
 ```
 
+### Получение питания
+
+Получите доступные комплексы питания на дату:
+
+```python
+from datetime import date
+
+async def get_meals():
+    profile = await client.get_me()
+    person_id = profile.children[0].contingent_guid
+
+    meals = await client.meals.get_complexes(
+        on_date=date(2026, 3, 10),
+        person_id=person_id,
+    )
+
+    for complex_item in meals.items:
+        print(f"{complex_item.name}: {complex_item.price / 100:.2f} ₽")
+
+asyncio.run(get_meals())
+```
+
 ## Полный пример
 
 Вот полный пример, демонстрирующий все основные возможности:

@@ -2,6 +2,7 @@ from schoolmospy.core.basic_client import BasicClient
 from schoolmospy.core.events_client import EventClient
 from schoolmospy.core.homeworks_client import HomeworkClient
 from schoolmospy.core.marks_client import MarksClient
+from schoolmospy.core.meals_client import MealsClient
 from schoolmospy.models.profile import Profile
 from schoolmospy.models.userinfo import Userinfo
 
@@ -19,6 +20,7 @@ class StudentClient(BasicClient):
         self.homeworks = HomeworkClient(self)
         self.marks = MarksClient(self)
         self.events = EventClient(self)
+        self.meals = MealsClient(self)
 
     async def get_me(self) -> Profile:
         """

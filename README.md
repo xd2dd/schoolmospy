@@ -11,7 +11,7 @@ SchoolMosPy is a lightweight async Python wrapper for school.mos.ru APIs. It pro
 - **Async architecture** - built on `aiohttp` and `httpx` for high performance
 - **Type safety** - uses `pydantic` for data validation
 - **Simple API** - intuitive interface for working with data
-- **Full-featured** - access to marks, homeworks, events, and profile data
+- **Full-featured** - access to marks, homeworks, events, meals, and profile data
 
 ## 📋 Requirements
 
@@ -65,6 +65,19 @@ async def main():
 
 asyncio.run(main())
 ```
+
+## 🧪 Live Test Script
+
+Run the live script for new endpoint:
+
+```bash
+python test.py
+```
+
+Fill values in `test.py` first:
+- `TOKEN`
+- `PROFILE_ID`
+- `PERSON_ID` (contingent GUID)
 
 ## 📝 License
 

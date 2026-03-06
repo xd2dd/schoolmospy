@@ -244,6 +244,49 @@ print(f"User: {userinfo.name} ({userinfo.email})")
 
 ---
 
+## Meals
+
+Модели школьного питания.
+
+### Структура
+
+```python
+class MealComplexes(BaseModel):
+    items: list[MealComplex]  # Список доступных комплексов
+```
+
+### MealComplex (Комплекс питания)
+
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `id` | `int` | ID комплекса |
+| `name` | `str` | Название комплекса |
+| `start_date` | `date` | Дата начала действия комплекса |
+| `end_date` | `date` | Дата окончания действия комплекса |
+| `price` | `int` | Цена в копейках |
+| `kind` | `int` | Тип питания |
+| `payment_type` | `int` | Тип оплаты |
+| `preorder_allowed` | `bool` | Доступен ли предзаказ |
+| `allow_select_items` | `bool` | Можно ли выбирать позиции вручную |
+| `items` | `list[MealEntry]` | Позиции внутри комплекса |
+
+### MealEntry (Позиция меню)
+
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `id` | `int` | ID позиции |
+| `code` | `str` | Код позиции |
+| `name` | `str` | Название блюда |
+| `price` | `int` | Цена в копейках |
+| `ingredients` | `str \| None` | Состав |
+| `calories` | `float \| None` | Калории |
+| `weight` | `str \| None` | Вес/объем |
+| `protein` | `float \| None` | Белки |
+| `fat` | `float \| None` | Жиры |
+| `carbohydrates` | `float \| None` | Углеводы |
+
+---
+
 ## Работа с моделями
 
 ### Доступ к полям

@@ -23,6 +23,22 @@ class BasicClient:
         self.extra_headers: dict[str, str] = {}
 
     @property
+    def access_token(self) -> str | None:
+        if not self.token:
+            return None
+        token = self.token.strip()
+        if token.lower().startswith("bearer "):
+            token = token[7:].strip()
+        return token or None
+
+    @property
+    def bearer_token(self) -> str | None:
+        access_token = self.access_token
+        if not access_token:
+            return None
+        return f"Bearer {access_token}"
+
+    @property
     def headers(self) -> dict[str, str]:
         headers = {
             "Accept": "application/json, text/plain, */*",
@@ -30,8 +46,8 @@ class BasicClient:
             "User-Agent": "dnevniklib/1.0 (Python httpx)",
             "X-mes-subsystem": "familyweb",
         }
-        if self.token:
-            headers["Authorization"] = f"Bearer {self.token}"
+        if self.bearer_token:
+            headers["Authorization"] = self.bearer_token
         if self.profile_id:
             headers["Profile-Id"] = str(self.profile_id)
         if self.profile_type:

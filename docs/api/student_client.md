@@ -73,6 +73,16 @@ homeworks = await client.homeworks.get(from_date, to_date)
 events = await client.events.get(from_date, to_date, contingent_guid)
 ```
 
+### `meals`
+
+Доступ к MealsClient для получения школьного питания.
+
+**Тип:** `MealsClient`
+
+```python
+meals = await client.meals.get_complexes(on_date, person_id)
+```
+
 ## Методы
 
 ### `get_me()`
@@ -214,5 +224,6 @@ async def safe_example():
 - [MarksClient](marks.md) - Получение оценок ученика
 - [HomeworkClient](homeworks.md) - Получение домашних заданий
 - [EventClient](events.md) - Доступ к расписанию и событиям
+- [MealsClient](meals.md) - Получение комплексов питания
 - [Модели](../models.md) - Справочник моделей данных
 - [Исключения](../exceptions.md) - Обработка ошибок
