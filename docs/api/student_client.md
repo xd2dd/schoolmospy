@@ -73,6 +73,56 @@ homeworks = await client.homeworks.get(from_date, to_date)
 events = await client.events.get(from_date, to_date, contingent_guid)
 ```
 
+### `meals`
+
+Доступ к MealsClient для получения школьного питания.
+
+**Тип:** `MealsClient`
+
+```python
+meals = await client.meals.get_complexes(on_date, person_id)
+```
+
+### `entrances`
+
+Доступ к EntrancesClient для получения времени пребывания в школе.
+
+**Тип:** `EntrancesClient`
+
+```python
+durations = await client.entrances.get_visit_durations(person_id, from_date, to_date)
+```
+
+### `lesson_schedule`
+
+Доступ к LessonScheduleClient для получения детальной информации об уроке.
+
+**Тип:** `LessonScheduleClient`
+
+```python
+lesson = await client.lesson_schedule.get_item(item_id, person_id)
+```
+
+### `instant_messages`
+
+Доступ к InstantMessagesClient для получения уведомлений.
+
+**Тип:** `InstantMessagesClient`
+
+```python
+feed = await client.instant_messages.get_feed(page=1, npp=10)
+```
+
+### `gamification`
+
+Доступ к GamificationClient для работы с подарками МЭШ.
+
+**Тип:** `GamificationClient`
+
+```python
+catalog = await client.gamification.search_rewards()
+```
+
 ## Методы
 
 ### `get_me()`
@@ -214,5 +264,10 @@ async def safe_example():
 - [MarksClient](marks.md) - Получение оценок ученика
 - [HomeworkClient](homeworks.md) - Получение домашних заданий
 - [EventClient](events.md) - Доступ к расписанию и событиям
+- [MealsClient](meals.md) - Получение комплексов питания
+- [EntrancesClient](entrances.md) - Получение времени посещения школы
+- [LessonScheduleClient](lesson_schedule.md) - Детальная информация об уроке
+- [InstantMessagesClient](instant_messages.md) - Лента уведомлений
+- [GamificationClient](gamification.md) - Подарки МЭШ
 - [Модели](../models.md) - Справочник моделей данных
 - [Исключения](../exceptions.md) - Обработка ошибок

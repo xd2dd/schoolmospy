@@ -49,5 +49,10 @@ nav:
       - MarksClient: api/marks.md
       - HomeworkClient: api/homeworks.md
       - EventClient: api/events.md
+      - LessonScheduleClient: api/lesson_schedule.md
+      - MealsClient: api/meals.md
+      - EntrancesClient: api/entrances.md
+      - InstantMessagesClient: api/instant_messages.md
+      - GamificationClient: api/gamification.md
   - Models: models.md
   - Exceptions: exceptions.md

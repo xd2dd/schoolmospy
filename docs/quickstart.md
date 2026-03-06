@@ -122,6 +122,107 @@ async def get_schedule():
 asyncio.run(get_schedule())
 ```
 
+### Получение питания
+
+Получите доступные комплексы питания на дату:
+
+```python
+from datetime import date
+
+async def get_meals():
+    profile = await client.get_me()
+    person_id = profile.children[0].contingent_guid
+
+    meals = await client.meals.get_complexes(
+        on_date=date(2026, 3, 10),
+        person_id=person_id,
+    )
+
+    for complex_item in meals.items:
+        print(f"{complex_item.name}: {complex_item.price / 100:.2f} ₽")
+
+asyncio.run(get_meals())
+```
+
+### Получение времени в школе
+
+Получите историю входов/выходов за период:
+
+```python
+from datetime import date
+
+async def get_visit_durations():
+    profile = await client.get_me()
+    person_id = profile.children[0].contingent_guid
+
+    durations = await client.entrances.get_visit_durations(
+        person_id=person_id,
+        from_date=date(2026, 3, 2),
+        to_date=date(2026, 3, 8),
+    )
+
+    for day in durations.payload:
+        for visit in day.visits:
+            print(day.date, visit.in_time, visit.out_time, visit.duration)
+
+asyncio.run(get_visit_durations())
+```
+
+### Получение данных об уроке
+
+Получите детальную информацию по конкретному уроку:
+
+```python
+async def get_lesson_details():
+    profile = await client.get_me()
+    person_id = profile.children[0].contingent_guid
+
+    lesson = await client.lesson_schedule.get_item(
+        item_id=594787540,
+        person_id=person_id,
+    )
+
+    print(lesson.subject_name, lesson.begin_time, lesson.end_time)
+    for hw in lesson.lesson_homeworks:
+        print("ДЗ:", hw.homework)
+
+asyncio.run(get_lesson_details())
+```
+
+### Получение уведомлений
+
+Получите ленту уведомлений:
+
+```python
+async def get_notifications():
+    feed = await client.instant_messages.get_feed(page=1, npp=10)
+
+    for item in feed.data:
+        print(item.created_at, item.title)
+
+asyncio.run(get_notifications())
+```
+
+### Получение подарков МЭШ
+
+```python
+async def get_gifts():
+    catalog = await client.gamification.search_rewards(
+        reward_types=["GIFT"],
+        statuses=["ACTIVE"],
+    )
+    print("Каталог:", len(catalog.content))
+
+    my_rewards = await client.gamification.get_profile_rewards(
+        profile_id=43177,
+        from_scope="ALL",
+        to_scope="ME",
+    )
+    print("У меня:", len(my_rewards.content))
+
+asyncio.run(get_gifts())
+```
+
 ## Полный пример
 
 Вот полный пример, демонстрирующий все основные возможности:

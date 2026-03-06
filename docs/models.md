@@ -244,6 +244,191 @@ print(f"User: {userinfo.name} ({userinfo.email})")
 
 ---
 
+## Meals
+
+Модели школьного питания.
+
+### Структура
+
+```python
+class MealComplexes(BaseModel):
+    items: list[MealComplex]  # Список доступных комплексов
+```
+
+### MealComplex (Комплекс питания)
+
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `id` | `int` | ID комплекса |
+| `name` | `str` | Название комплекса |
+| `start_date` | `date` | Дата начала действия комплекса |
+| `end_date` | `date` | Дата окончания действия комплекса |
+| `price` | `int` | Цена в копейках |
+| `kind` | `int` | Тип питания |
+| `payment_type` | `int` | Тип оплаты |
+| `preorder_allowed` | `bool` | Доступен ли предзаказ |
+| `allow_select_items` | `bool` | Можно ли выбирать позиции вручную |
+| `items` | `list[MealEntry]` | Позиции внутри комплекса |
+
+### MealEntry (Позиция меню)
+
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `id` | `int` | ID позиции |
+| `code` | `str` | Код позиции |
+| `name` | `str` | Название блюда |
+| `price` | `int` | Цена в копейках |
+| `ingredients` | `str \| None` | Состав |
+| `calories` | `float \| None` | Калории |
+| `weight` | `str \| None` | Вес/объем |
+| `protein` | `float \| None` | Белки |
+| `fat` | `float \| None` | Жиры |
+| `carbohydrates` | `float \| None` | Углеводы |
+
+---
+
+## Visit Durations
+
+Модели времени пребывания ученика в школе.
+
+### Структура
+
+```python
+class VisitDurations(BaseModel):
+    payload: list[VisitDurationDay]  # Дни с посещениями
+```
+
+### VisitDurationDay
+
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `date` | `date` | Дата |
+| `visits` | `list[Visit]` | Список входов/выходов за день |
+
+### Visit
+
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `in_time` | `str` | Время входа |
+| `out_time` | `str` | Время выхода |
+| `duration` | `str` | Длительность пребывания |
+| `person_in` | `Any \| None` | Кто зафиксировал вход |
+| `person_out` | `Any \| None` | Кто зафиксировал выход |
+| `kind_id` | `int` | Тип организации |
+| `kind_name` | `str` | Название типа организации |
+| `is_incomplete` | `bool` | Признак незавершенного посещения |
+| `organization_id` | `int` | ID организации |
+| `organization_name` | `str` | Полное название организации |
+| `organization_short_name` | `str` | Короткое название |
+| `organization_address` | `str` | Адрес организации |
+
+---
+
+## Lesson Schedule Item
+
+Модели детальной информации об уроке.
+
+### Структура
+
+```python
+class LessonScheduleItem(BaseModel):
+    id: int
+    subject_name: str
+    begin_time: str
+    end_time: str
+    teacher: LessonTeacher
+    lesson_homeworks: list[LessonHomework]
+    details: LessonDetails
+```
+
+### Основные поля LessonScheduleItem
+
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `id` | `int` | ID элемента расписания |
+| `group_id` | `int` | ID группы |
+| `subject_id` | `int` | ID предмета |
+| `plan_id` | `int` | ID плана урока |
+| `date` | `date` | Дата урока |
+| `begin_time` | `str` | Время начала |
+| `end_time` | `str` | Время окончания |
+| `subject_name` | `str` | Название предмета |
+| `teacher` | `LessonTeacher` | Информация об учителе |
+| `room_number` | `str \| None` | Номер кабинета |
+| `room_name` | `str \| None` | Название кабинета |
+| `building_name` | `str \| None` | Здание |
+| `lesson_homeworks` | `list[LessonHomework]` | Домашние задания к уроку |
+| `details` | `LessonDetails` | Детальная информация и тема урока |
+| `is_virtual` | `bool` | Признак виртуального урока |
+
+---
+
+## Instant Messages
+
+Модели уведомлений.
+
+### Структура
+
+```python
+class InstantMessagesFeed(BaseModel):
+    data: list[InstantMessageItem]  # Лента уведомлений
+```
+
+### InstantMessageItem
+
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `id` | `str` | UUID уведомления |
+| `title` | `str` | Заголовок |
+| `description` | `str` | Текст уведомления |
+| `timestamp` | `int` | Unix timestamp |
+| `decision_required` | `bool` | Требуется ли решение |
+| `familiarise_required` | `bool` | Требуется ли ознакомление |
+| `is_new` | `bool` | Признак нового уведомления |
+| `is_important` | `bool` | Признак важности |
+| `created_at` | `datetime` | Дата создания |
+| `child_id` | `int \| None` | ID ребенка (если есть) |
+| `vcu_icon` | `str \| None` | Иконка уведомления |
+| `context` | `InstantMessageContext` | Контекст события |
+
+---
+
+## Gamification
+
+Модели подарков МЭШ.
+
+### RewardsSearchResponse
+
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `total_items` | `int` | Общее число подарков |
+| `page_number` | `int` | Номер страницы |
+| `page_size` | `int` | Размер страницы |
+| `content` | `list[RewardCatalogItem]` | Подарки из каталога |
+
+### ProfileRewardsResponse
+
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `total_items` | `int` | Общее число записей |
+| `page_number` | `int` | Номер страницы |
+| `page_size` | `int` | Размер страницы |
+| `content` | `list[ProfileRewardItem]` | Подарки профиля |
+
+### GamificationProfile
+
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `id` | `int` | ID профиля геймификации |
+| `gamification_id` | `str` | Публичный идентификатор |
+| `first_name` | `str` | Имя |
+| `last_name` | `str` | Фамилия |
+| `balance` | `int` | Баланс |
+| `is_receive_rewards_allowed` | `bool` | Разрешено ли получать подарки |
+| `is_show_rewards_allowed` | `bool` | Разрешено ли показывать подарки |
+
+---
+
 ## Работа с моделями
 
 ### Доступ к полям
