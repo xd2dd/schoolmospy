@@ -2,34 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://xd2dd.github.io/schoolmospy/</loc>
-         <lastmod>2026-02-09</lastmod>
+         <lastmod>2026-03-06</lastmod>
     </url>
     <url>
          <loc>https://xd2dd.github.io/schoolmospy/exceptions/</loc>
-         <lastmod>2026-02-09</lastmod>
+         <lastmod>2026-03-06</lastmod>
     </url>
     <url>
          <loc>https://xd2dd.github.io/schoolmospy/models/</loc>
-         <lastmod>2026-02-09</lastmod>
+         <lastmod>2026-03-06</lastmod>
     </url>
     <url>
          <loc>https://xd2dd.github.io/schoolmospy/quickstart/</loc>
-         <lastmod>2026-02-09</lastmod>
+         <lastmod>2026-03-06</lastmod>
     </url>
     <url>
          <loc>https://xd2dd.github.io/schoolmospy/api/events/</loc>
-         <lastmod>2026-02-09</lastmod>
+         <lastmod>2026-03-06</lastmod>
     </url>
     <url>
          <loc>https://xd2dd.github.io/schoolmospy/api/homeworks/</loc>
-         <lastmod>2026-02-09</lastmod>
+         <lastmod>2026-03-06</lastmod>
     </url>
     <url>
          <loc>https://xd2dd.github.io/schoolmospy/api/marks/</loc>
-         <lastmod>2026-02-09</lastmod>
+         <lastmod>2026-03-06</lastmod>
+    </url>
+    <url>
+         <loc>https://xd2dd.github.io/schoolmospy/api/meals/</loc>
+         <lastmod>2026-03-06</lastmod>
     </url>
     <url>
          <loc>https://xd2dd.github.io/schoolmospy/api/student_client/</loc>
-         <lastmod>2026-02-09</lastmod>
+         <lastmod>2026-03-06</lastmod>
     </url>
 </urlset>
